@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% extends "blog/base.html" %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Rodrigo Loza blog</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    {% block headerContent %}
+      <!-- Page Header -->
+      <header class="masthead" style="background-image: url('/static/img/about-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <img 
+              src="/static/img/me.jpg" 
+              class="img-circle">
+              <div class="page-heading">
+                <h1>About Me</h1>
+                <span class="subheading">This is what I do.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    {% endblock %}
+
+    <!-- Main Content -->
+    {% block postContent %}
+      <!-- Bio -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <strong>Bio</strong>
+            <p>I am Rodrigo Loza, a Biomedical engineer with great interest in the application of representation learning in the medical field. </p>
+            <p>On the professional side, I am a co-founder of <a href="">Labomatic</a>, a Bolivian-startup that uses Deep Learning models to automate microscopy diagnostics. My role in the company is to design, build and code the whole information system. I developed the Android applications, the frontend, the backend, the embedded software and, of course, the Deep Learning models. </p>
+            <p>Previously, I was an undergraduate research assistant at the <a href="">Computer Engineering Laboratory - UCB</a> working on Deep Learning in Computer Vision and embedded hardware (FPGAs). Over the course of my undergraduate studies I managed to obtain a research scholarship and succeed in multiple local and oversea hackathons from important organizations/companies like UCB La Paz - Bolivia, The american embassy, Mojix and The Hackaday prize. As I briefly mentioned before, in 2016 I managed to succed in 3/5 stages of The Hackaday Prize 2016 and obtained USD $5000 to fund my startup. Later that year, I searched for a bigger seed investment and managed to work alongside <a href="">Franz Freudenthal</a> in the early stage of the startup.</p>
+            <p>On a side for fun I teach, mentor, work on pet projects and read about startups. I love to hang out with people interested in AI and I am always open to Zoom, email or just text with people that would like to discuss my work or AI in general.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="container">
+        <!-- Industry research -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <strong>Timeline</strong> <br>
+            <span style="color: #333333">
+              2018-present:
+            </span>
+            <span style="color: #333333">
+              Deep learning scientist at Labomatic
+            </span>
+            <span style="color: #333333">
+              Convolutional neural networks for localization and recognition. Full-stack web development, native Android applications, embedded software.
+            </span>
+          </div>
+        </div>
+        <!-- Industry research -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <span style="color: #333333">
+              2017-2018:
+            </span>
+            <span style="color: #333333">
+              Software Engineer at pfm
+            </span>
+            <span style="color: #333333">
+              Convolutional neural networks for localization and recognition, native Android applications, Python backend development.
+            </span>
+          </div>
+        </div>
+        <!-- Internship undergraduate -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <span style="color: #333333">
+              2013-2018:
+            </span>
+            <span style="color: #333333">
+              Computer Engineering Laboratory UCB - La Paz, Bolivia.
+            </span>
+            <span style="color: #333333">
+              Computer vision, Image Processing, Machine Learning, Embedded hardware (FPGAs). 
+            </span>
+            <span style="color: #333333">
+              Adviser <a href="">PhD, Humberto Calderon Rocabado</a>
+            </span>
+          </div>
+        </div>
+        <!-- Undergraduate studies -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <span style="color: #333333">
+              2013-2018:
+            </span>
+            <span style="color: #333333">
+              Universidad Catolica Boliviana - La Paz, Bolivia
+            </span>
+            <span style="color: #333333">
+              Major in Biomedical Engineering
+            </span>
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- News -->
+      <div class="container">
+        <!-- Hackaday prize -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <strong>News</strong> <br>
+            <span style="color: #333333">
+              May, June, August 2016:
+            </span>
+            <span style="color: #333333">
+              Won multiple stages of The Hackaday Prize 2016
+            </span>
+            <span style="color: #333333">
+              <a href="">Automatic Digital Microscope</a>
+            </span>
+          </div>
+        </div>
+
+        <!-- Funtect -->
+        <div class="row">
+          <div class="col-lg-10 col-md-12 mx-auto">
+            <span style="color: #333333">
+              September 2016:
+            </span>
+            <span style="color: #333333">
+              Won main science fair of UCB - La Paz, Bolivia.
+            </span>
+            <span style="color: #333333">
+              <a href="">Automatic Digital Microscope</a>
+            </span>
+          </div>
+        </div>
+
+      <!-- American embassy hackathon -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span style="color: #333333">
+            November 2015:
+          </span>
+          <span style="color: #333333">
+            Won hackathon at The american embassy
+          </span>
+          <span style="color: #333333">
+            <a href="">Smart recorder</a>
+          </span>
+        </div>
+      </div>
+
+      <!-- 1st Mojix hackathon -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span style="color: #333333">
+            October 2015:
+          </span>
+          <span style="color: #333333">
+            Won hackathon at Mojix 
+          </span>
+          <span style="color: #333333">
+            <a href="">UGROV</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Publications -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+        <div class="col-lg-4 col-md-2 mx-auto">
+          <h1>Publications</h1>
+        </div>
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Deep representation learning and its applications to medical computer vision -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span> <a href="">[PDF soon]</a> Deep representation learning and its applications to medical computer vision. </span> <br>
+          <span style="color: #db3644">Loza Rodrigo.</span>
+          <span style="color: #36db4a">undergraduate thesis.</span>
+        </div>
+      </div>
+
+      <!-- Conventional microscopy autofocus using Computer Vision -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span> <a href="">[PDF soon]</a>Conventional microscopy autofocus using Computer Vision. </span> <br>
+          <span style="color: #db3644">Loza Rodrigo.</span>
+          <span style="color: #36db4a">undergraduate thesis.</span>
+        </div>
+      </div>
+
+      <!-- SPID dataset -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span> <a href="">[PDF soon]</a>Building a stool parasite dataset for automated microscopy diagnostics. </span> <br>
+          <span style="color: #db3644">Loza Rodrigo.</span>
+          <span style="color: #36db4a">undergraduate thesis.</span>
+        </div>
+      </div>
+
+      <!-- Automatic tuberculosis detection using image processing techniques -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span> <a href="">[PDF soon]</a>Automatic tuberculosis detection using image processing techniques.</span> <br>
+          <span style="color: #db3644">Loza Rodrigo.</span>
+          <span style="color: #36db4a">undergraduate thesis.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Teaching -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+        <div class="col-lg-4 col-md-2 mx-auto">
+          <h1>Teaching</h1>
+        </div>
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Programming 101 TA -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Teacher assistant. Programming 101 UCB - La Paz, Bolivia.</span>
+        </div>
+      </div>
+      <!-- GDG ML instructor -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Machine learning instructor.</span>
+          <span>GDG La Paz, Bolivia. AI Dojo.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Talks -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+        <div class="col-lg-4 col-md-2 mx-auto">
+          <h1>Talks</h1>
+        </div>
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Deep learning and computer vision -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Deep learning and computer vision.</span> <br>
+          <span>Startup science weekend. Facultad ciencias exactas - UMSA.</span>
+        </div>
+      </div>
+      <!-- On device deep learning -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>On device deep learning.</span>
+          <span>Startup science weekend. Facultad ciencias exactas - UMSA.</span>
+        </div>
+      </div>
+      <!-- Neural networks from scratch -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Program a Neural Network from scratch.</span>
+          <span>Woman in data science La Paz, Bolivia. Elemental.</span>
+        </div>
+      </div>
+      <!-- GDG summit Bolivia -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>The rise of Artificial Intelligence trhough learning.</span>
+          <span>GDG summit Bolivia. UCB - La Paz.</span>
+        </div>
+      </div>
+      <!-- Digital bank -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Artificial Intelligence and financial services.</span>
+          <span>Digital Bank Bolivia.</span>
+        </div>
+      </div>
+      <!-- Startup weekend Bolivia -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>AI judge for startup weekend Bolivia.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Pet projects -->
+    <div class="container">
+      <!-- Undergraduate studies -->
+      <div class="row">
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+        <div class="col-lg-4 col-md-2 mx-auto">
+          <h1>Pet projects</h1>
+        </div>
+        <div class="col-lg-4 col-md-5 mx-auto"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Programming 101 TA -->
+      <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <span>Impy.</span> <br>
+          <span>A programming library to preprocess an image dataset.</span>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/clean-blog.min.js"></script>
+
+  </body>
+
+</html>

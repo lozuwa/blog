@@ -1,0 +1,15 @@
+/* Colors */
+/*
+	#db3644 red
+	#36db4a green
+*/
+
+.img-circle {
+    border-radius: 30%;
+}
+
+.imgme {
+    border: 3px solid white;
+    /* box-shadow: #AAA 0px 0px 4px 0px; */
+    float: left;
+}
