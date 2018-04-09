@@ -3,38 +3,16 @@
   
   {% extends "blog/base.html" %}
 
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Lessons learned from making an image dataset from scratch</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="styles heet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
-
-  </head>
-
   <body>
     <!-- Page Header -->
     {% block headerContent %}
-      <header class="masthead" style="background-image: url('/static/img/dataset_wallpaper.png')">
+      <header class="masthead" style="background-image: url('/static/img/workstation_wallpaper.jpeg')">
         <div class="overlay"></div>
         <div class="container">
           <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg-10 col-md-12 mx-auto">
               <div class="post-heading">
-                <h1>Create your own deep learning workstation</h1>
+                <h1>My Deep Learning workstation</h1>
               </div>
             </div>
           </div>
@@ -49,7 +27,7 @@
           <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
               <h2>Introduction</h2>
-              <p>In this post I am going to describe what my workstation looks like and how it helps me improve my work in AI. Maybe it will give you an idea of what you might need. In case you are looking for how to install Cuda there is a description in the bottom.</p>
+              <p>In this post I am going to describe what my workstation looks like and how it helps me improve my work in AI. In case you are looking for a tutorial on how to setup Cuda 9.0, CuDNN 7.0, python 3.6, tensorflow-gpu 1.6 with a GTX 1080 ti, there is a <a href="#how-to-setup-nvidia-tools">tutorial</a> in the bottom of this page.</p>
               <h2>Hardware</h2>
               <p>My workstation has the following components:
                 <ul>
@@ -80,7 +58,7 @@
               Even thought a lot of people talk a lot about tools and shit in AI, the most valuable tools are math, programming and algorithms. 
               </p>
               <p>In case you are following this blog as a tutorial I am going to help you with the hard parts. These are installing Cuda and Cudnn.</p>
-              <h3>CUDA 9.0</h3>
+              <h3 id="how-to-setup-nvidia-tools">CUDA 9.0</h3>
               <p>Installing CUDA might be challenging because cuda toolkits and drivers are not always compatible with your gpu. So, you have to figure out which CUDA toolkit you want to install and what is the compatible driver.</p>
               <p>As of 3/29/2018 the following steps work with a GTX 1080 ti and the hw/sw mentioned before.</p>
                 <ul>
@@ -107,7 +85,7 @@
                   <li>If you reboot your computer, then your screen might be freezed again. Don't worry the lightdm service is still dead so use the previous step to recover it.</li>
                   <li>One last step, type <span class="general-purpose-command">nvidia-smi</span> to check CUDA is working. You should see a table showing the processes, memory used, etc by the GPU.</li>
                 </ul>
-                <h3>Cudnn</h3>
+                <h3>CuDNN 7.0 for Cuda 9.0</h3>
                 <p>At this point you should have CUDA 9.0, now we are going to install Cudnn. This library will allow us to work with tensorflow and the gpu. The following steps are easy and I don't see a reason why they would not work unless you really screwed up or have no idea what you are doing, haha sorry it is funny to me. </p>
                 <ul>
                   <li>Download Cudnn 7.0 for Cuda 9.0</li>
