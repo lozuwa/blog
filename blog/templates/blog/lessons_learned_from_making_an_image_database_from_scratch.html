@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  {% extends "blog/base.html" %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lessons learned from making an image dataset from scratch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="styles heet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- Page Header -->
+    {% block headerContent %}
+      <header class="masthead" style="background-image: url('/static/img/dataset_wallpaper.png')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-heading">
+                <h1>Lessons learned from making an image dataset from scratch</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    {% endblock %}
+
+    <!-- Post Content -->
+    {% block postContent %}
+      <article>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <h2>Introduction</h2>
+              <p>In order to solve a complicated problem, machine learning is usually a good option. However, machine learning is very data hungry and at least 5000 data points per class are required. In order to solve this problem, big open-access databases such as Imagenet, COCO and Cifar-10/100 are used. But, what if we want to solve a problem that requires very specific data not available online or for free?</p>
+              <p>If this is your case, then you are going to find out that collecting data is actually really hard. I have done this for the startup that I work at <a href="">Sinapsis</a>. Therefore, I believe I have some experience, in this post I outline the lessons I learned building a dataset to solve a medical classification problem.</p>
+              <p>Although I cannot reveal how I actually made the medical dataset, I can use another example to showcase the steps.</p>
+              <h2>Building a dataset is just Statistics</h2>
+              <p>Building a dataset is just a Statistics problem. First, you have to define your problem and create constructs to define it. Then, collect as much data as you can, clean the data, do some exploratory data analysis and build your conclusions. Building a database for AI is just the same, let's give an example. Suppose we want to build an application that counts the amount of calories of a type of food that we present in the form of an image. So, if we show the app an image of spaguetti, then it should report it has 1500 calories. Let's start.</p>
+              <h2>Define your problem</h2>
+              <p>
+                This stage has two very important parameters: scalability and constraints. On one hand scalability is important because your dataset should be able to scale to deeper information, otherwise you might get stuck. On the other hand, constraints are also important because they are going to define what are going to be the limits to solve the problem.
+              </p>
+              <p>
+                Let's define the dataset. It has to be scalable and constrained, a good practice is to build a tree using a top-down approach. On the root node of the tree, you will set the class food. The branches of this root node might be hard to identify. You could classify food by country, maybe cities, maybe types (spicy, sweet, etc). You have to make a good decision, usually the correct answer is found on papers. But, I doubt anyone would write about food, so you will have to solve it. In this case a good option would be simply define that each child root wil be a different food. E.g: Spaghetti, Lasagne, Fried chicken, others. The next nodes in the three are important as well, it would be good to define them as ingredients that make up the plate. E.g: chicken, pasta, sausage. We will leave the the nodes here since the problem is constrained enough and the data seems rather easy to collect, but note the problem is highly scalable. The next set of nodes can be sub-ingredients that make up the ingredients. So if we want to give a deeper explanation of what is in the plate and how much calories it has we just have to keep digging in the three. And the top nodes already contain that information but we have decided not to add it to our AI model yet in order to constrain our problem. 
+              </p>
+              <h2>Data wrangling</h2>
+              <h3>Getting the data</h3>
+              <p>We have defined how our dataset will look like. Now, let's get the data. The easiest solution is to obtain the data from the company's or a partner's database. Nonetheless, in the case none are available, it is our problem to obtain it.</p>
+              <p>In our case, the data is available in multiple formats. I mean, you could just prepare every plate that you might think of and take multiple pictures of it. You could scrap Instagram or Facebook (which is ILEGAL). You could write down all the foods that you can think of (create a corpus) and then search them online (This might be ILEGAL as well since many pictures have copyrights). As I mentioned, the data is available but it is not legal to use. This is why a partner is always the best option. They will give you the rights to access the data.</p>
+              <p>So, you might now realize that obtaining data is actually really hard. Of course, if your project is academic, then asking for permissionmight be enough. But in the case of industry, the only viable option is a partnership or own te data.</p>
+              <p>An important metric at this stage is to know when it is enough data. This is hard to define because in Data Science, the stages to solve the problem are linked to each other. E.g: if your EDA shows that you have a skew class, then you should go back to remove or get more data. So, experience counts at this point. In Deep Learning models, at least 5000 examples are expected per class. In the case of machine learning it might be more or less depending on the complexity of the problem. The best tip I have ever received to solve this is the following, "Don't be a hero, search the paper that solved the same or similar problem and start from there".</p>
+              <h3>Cleaning the data</h3>
+              <p>Assume you have obtained 5000 images of each classs. I assure you not all of them are useful. Many of them are too noisy or are related to something else. Maybe when searching for hamburguers you accidentally queried images of restaurants that serve hamburguers. You need to clean this data. </p>
+              <p>In the case of images this is really a painful job. It depends on the capacity of your labelers and their experience. If you are working on an easy project such as the food one, then you might use anybody to do this. But, if you are working in the medical field it will be costly and frustrating. Either case, the work has to be done and all images have to be correctly labeled. Have you ever heard the phrase "Garbage in, garbage out"? It is very important.</p>
+              <h3>Converting to tidy data</h3>
+              <p>This phase is easy. Your images might be stored in a SQL database whose table contains the path to the image, its associated label and maybe the bouding box that focuses the object. I don't know why, but many datasets have json files associated with each image. The json file contains information about the image, the bouding box and other characteristics. In my opinion, saving everything in a SQL database is the most organized way.</p>
+              <h2>Exploratory data analysis</h2>
+              <p>In Data Science, this is the fun part. Long hours looking for patterns, trying different things to get metrics, insights and plotting the data. </p>
+              <p>However in the case of images, it is a bit different. Given the complexity of images, they are hard to analise. There are some methods, you could use PCA to extract features and compare classes. But that won't really tell you much, your human cognitive intelligence should be enough. In this type of problem you would do the following. Look at the balance of classes, that is counting the frequency of each class and checking if there are no skew classes. Query random images and check if there are differentiable patterns such as color, edges, shapes, contexts, etc. These features will determine which data augmentation you will use later. Check the variety of the examples in each class, this is to determine that you have enough variety in your problem. Images of spaghetti at a fancy restaurant, at home, in the street, different lighting conditions, different preparations, different pasta, different parts of chicken.</p>
+              <p>At this stage, I implement something called data augmentation. This is a set of techniques that will increase the size of your data set by creating more examples of a single data point. For example, rotating the image, shifting the colors, translating the object, cropping at different sizes, etc. I almost always use this technique to increase the size of my data because it always results in better performance. However, you should be careful. Data augmentation requires critical thinking. I will explain, in the case you are trying to differentiate a grape from a peach, then color is important because shapes are very similar. Therefore, you should not use color shifting or fancy PCA, those techniques would only increase the noise in your data.</p>
+              <h2>Conclusions</h2>
+              <p>Once your metrics are validated. You can move onto making conclusions about your dataset. You can make a table that shows the amount of classes and the data distribution. You can show some images to show that variety is present and show how data augmentation creates new examples. These results will serve as an insight for the training phase.</p>
+
+              <h2>Summary</h2>
+              <ul>
+                <li>Creating a database is just a statistics problem. Define the problem, create constructs, look for data, analyse it and present conclusions (which in AI is usually classification, regression, density estimation, recommendations, etc.) </li>
+                <li>Make sure you define the contraints and scalability of your database correctly. Otherwise you might waste a lot of time in the next phases. </li>
+                <li>Collecting data is the hardest part because you should own it in order to profit with it. Be careful with copyrights.</li>
+                <li>Collecting data is also time consuming, you require machines or people that fill the data points. Even thought it might take a lot of time, make sure to spend enough time on it since you are going to need the best quality and representation you can obtain.</li>
+                <li>Be prepared for the data cleaning phase, you need experts in the area and they are going to be bored to label tens of thousands of data points. So, they might ask for an expensive salary or not do it well. In my case, I decided to hire the best interns I could obtain in medicine and make them label the data while they could chat. Each data point was reviewed three times so the quality was assured.</li>
+                <li>Create backups of your data even if they are above 100 Gb. Once I deleted 2000 bounding box annotations by mistake and because I did not have a backup I had to invest in making them again.</li>
+                <li>Exploratory analysis is very important, it determines the quality of your AI algorithms. So be sure to spend some time on it.</li>
+                <li>The conclusions of your data are valuable, I would encourage a paper on them in order to validate your results and showcase the quality of your work. This might also help if you have competence.</li>
+                <li>My last advice is to have fun while working in your project. You are going to spend endless hours trying to make it work and that is commiting part of your life. So make the best out of it.</li>
+              </ul>
+
+              <p>So that is it. I hope this serves you as a guide to implement your own database or maybe to realize that I might be wrong in which case I am open for feedback and you can send me a message. </p>
+
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/clean-blog.min.js"></script>
+
+  </body>
+
+</html>

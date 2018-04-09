@@ -6,5 +6,9 @@ hr.small {
 }
 
 p {
-	text: text-justify;
+	text-align: justify;
+}
+
+.general-purpose-command {
+	background-color: #d5f4e6;
 }

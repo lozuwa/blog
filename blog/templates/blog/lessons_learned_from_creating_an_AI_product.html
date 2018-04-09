@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  {% extends "blog/base.html" %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lessons learned from making an image dataset from scratch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="styles heet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- Page Header -->
+    {% block headerContent %}
+      <header class="masthead" style="background-image: url('/static/img/dataset_wallpaper.png')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-heading">
+                <h1>Lessons learned from making an image dataset from scratch</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    {% endblock %}
+
+    <!-- Post Content -->
+    {% block postContent %}
+      <article>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <h2>Introduction</h2>
+              <p>
+                Modern<a href="https://en.wikipedia.org/wiki/Artificial_intelligence">Artificial Intelligence</a> uses three main components to work.
+                <ul>
+                  <li>Large amounts of data</li>
+                  <li>Machine/Deep learning</li>
+                  <li>GPUs</li>
+                </ul> 
+                This recipe has proven to be effective and AI has become the topic of interest of many scientific and industry fields. For example, medicine uses AI to try to automate diagnostics and social media uses AI in recommendation systems. But this was not always the case, before 2008 AI was considered an almost dead topic. But in 2012, a laboratory in Toronto directed by Prof. Geofrey Hinton applied Deep learning to solve the Imagenet challenge and obtained results that surpassed the state-of-the-art in that year. Given the fact that the results were way better, Deep learning was retaken as the main method in AI. 
+                As of today, 6 years after the resurgence of AI, it has been clear that the most difficult ingredient to collect has been data. Let me explain, suppose you want to make an translation system, it is achievable using sequence to sequence models. If your aspiration is to work on the project for learning purposes, then you are going to find a lot of data and resources online. But trouble starts when you want to apply this idea as a product. In this blog, I am going to tell you about the experience that I had about making an image dataset from scratch for the medical industry. Despite, I cannot tell you about the actual dataset I can describe the procedures I learned during the experience.
+
+              </p>
+              <h2>A little bit about products that use AI</h2>
+              <p>
+                When I first started building my product (which in the beginning was an university project) I did not realize how expensive it was going to be. At that time, 2014, we were working on automatic diagnostics for Tuberculosis. Data about the problem was impossible to find online. It meant we had to build the database and for that we required very expensive medical equipment. Me and my partner were at the university, so we tought it was going to be impossible to obtain the necessary equipment. Fortunately, we obtained money from an oversea contests and from the university. But, had I not been luck, I would not have been able to go forward. Anyways, datasets that power AI require an infraestructure that might be non-existant, very expensive or unfeasable to obtain. So, be sure to think ahead and if possible search for help. There is always a contest, hackathon, grant, etc. that might help you. 
+              </p>
+              <p>
+                After completing the project in the university, we got a lot of publicity because of our results. We actually had a client and multiple offers from universities of Bolivia reached us in the hope that we would work with them. However, thankfully, we analised the situation and what would be the best next steps. Academia invitations were awaiting, but were those the ones that would allow us to create an Artificial Intelligence product? The answer was no because universities did not have access to datasets that would solve our problem. Besides, they surely would not invest large amounts of money as industry would. Thus, our conclusions moved our project to the industry where we would look for the necessary assets and investors. We managed to find an investor, but that is another story. The takeaway is that AI products require the ingredients mentioned in the introduction section, and if not obtained, AI will not work. So, think who is the best partner that would allow you to  solve the problem.
+              </p>
+              <h2>Where to start?</h2>
+              <p>
+                At this point you have the right partner, a good amount of money, access to the data and a MVP that proves your whole idea. What is the next step? 
+                <ul>
+                <li>Spend $5000 USD in gpus and cpus?</li>
+                <li>Install deep learning libraries in your computer?</li>
+                <li>Build your own dataset</li>
+                </ul>
+                Haha, so the answer should be clear. You should start building the dataset that will solve the problem.
+              </p>
+              <h2>Building your dataset</h2>
+              <p>
+                At first glance, this might sound challenging and it really is, but you have some options to alleviate your work. In the first place, given that you are in the business there might be an infraestructure that contains all the data you need. Let's say you are in a hospital, they have SQL databases that contain all the information about patients. It is actually mandatory for health centers to have backup of your patients, so you should be fine. Maybe the company does not have databases (which should be rarely and maybe ilegal), but they work with clients that provide the data. Then, your work should start on building the infraestructure to save that information. The third option is more applicable to startups or big companies that have contacts. In this case, your problem might even be so innovative that there is not really a record of that information. So, as a friend recommend me, you should look for a partner. Let's say that you want to build a clothes image classifier, then you should partner with a big retail store or something like that.   
+              </p>
+
+                            <p>
+                Before moving to the next part of the blog, I would like to discuss a little bit about what is in between the MVP and creating the dataset. You have to be very careful about using open source data to train AI. Suppose you are working on a self-driving-car, you would test your MVP using the COCO dataset. But releasing a product using this actual data is not allowed. Big datasets such as COCO, Imagenet and VOC do not grant permission for profitable products, services, etc. So, be careful.
+              </p>
+                
+                            <h2>Bonus</h2>
+              In the case, you are at Silicon Valley a video might be sufficient, I mean, remeber the story of <a href="https://techcrunch.com/2011/10/19/dropbox-minimal-viable-product/">Dropbox</a>.
+
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/clean-blog.min.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  {% extends "blog/base.html" %}
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lessons learned from making an image dataset from scratch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="styles heet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- Page Header -->
+    {% block headerContent %}
+      <header class="masthead" style="background-image: url('/static/img/dataset_wallpaper.png')">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="post-heading">
+                <h1>Create your own deep learning workstation</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    {% endblock %}
+
+    <!-- Post Content -->
+    {% block postContent %}
+      <article>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <h2>Introduction</h2>
+              <p>In this post I am going to describe what my workstation looks like and how it helps me improve my work in AI. Maybe it will give you an idea of what you might need. In case you are looking for how to install Cuda there is a description in the bottom.</p>
+              <h2>Hardware</h2>
+              <p>My workstation has the following components:
+                <ul>
+                  <li>Motherboard Asus H110M-CS.</li>
+                  <li>16 Gb RAM memory.</li>
+                  <li>250 Gb SSD hard disk.</li>
+                  <li>1 Tb hard disk (Here I save my datasets, they are heavy <a href="https://www.urbandictionary.com/define.php?term=AF">AF</a>)</li>
+                  <li>I don't have a sound card. Don't need it.</li>
+                  <li>Wireless network card.</li>
+                  <li>GTX 1080 ti (This is my graphics card, as of the time of writing this post is the second most powerful GPU in the market.)</li>
+                  <li>Samsung 24 inch monitor(I have two of these, I need a lot of space and small monitors drive me crazy)</li>
+                  <li>Keyboard (Razer are the best, but I cannot buy a razer for every computer I have so I use logitech ones in the less important workstations)</li>
+                  <li>Mouse (I realized I hardly ever use the mouse so I have a Logitech mouse)</li>
+                  <li>Server PC case (It is big, but not big enough for my GTX 1080 ti so I had to destroy some parts)</li>
+                </ul>
+              </p>
+              <h2>Software</h2>
+              <p>I use Ubuntu 16.04, Cuda 9.0, Cudnn 7.0, python3.6 btw Anaconda's distribution and the following libraries that I use to code deep learning stuff, save data and preprocess images: 
+              <ul>
+                <li>Tensorflow</li>
+                <li>Numpy</li>
+                <li>Skimage</li>
+                <li>Opencv</li>
+                <li>pymysql</li>
+                <li>Matplotlib</li>
+                <li>Impy (This is my own library that makes my life easier ... check it out <a href="">Impy</a>)</li>
+              </ul>
+              Even thought a lot of people talk a lot about tools and shit in AI, the most valuable tools are math, programming and algorithms. 
+              </p>
+              <p>In case you are following this blog as a tutorial I am going to help you with the hard parts. These are installing Cuda and Cudnn.</p>
+              <h3>CUDA 9.0</h3>
+              <p>Installing CUDA might be challenging because cuda toolkits and drivers are not always compatible with your gpu. So, you have to figure out which CUDA toolkit you want to install and what is the compatible driver.</p>
+              <p>As of 3/29/2018 the following steps work with a GTX 1080 ti and the hw/sw mentioned before.</p>
+                <ul>
+                  <li>Press <span class="general-purpose-command">ctrl+alt+f1</span> and enter text mode.</li>
+                  <li>Stop lightdm service. There are plenty of commands, my favorite ones are: <span class="general-purpose-command">systemctl stop lightdm.service</span> or <span class="general-purpose-command">service lightdm stop </span>.</li>
+                  <li>I highly recommend removing every cuda driver you might have before installing the new toolkit or driver. Use the following command: <span class="general-purpose-command">apt-get purge nvidia-*</span></li>
+                  <li>Give permissions to your sh file <span class="general-purpose-command"> chmod +x your-cuda-installer.sh</span></li>
+                  <li>Run your sh installer. <span class="general-purpose-command">bash your-cuda-installer.sh</span></li>
+                  <li>There will be several prompts to accept. I will mention them in case you are less experience and need some guidance. Otherwise, skip them.</li>
+                  <li>The first prompt is to accept the license. Type "accept".</li>
+                  <li>The next prompt will tell you if you want to rewrite the x-org file to use the nvidia drivers. Type yes.</li>
+                  <li>The next prompts are easy or not critical. So type yes in all of them or give them the default path.</li>
+                  <li>Once drivers are finished installing. Make sure everything went smooth by checking /tmp/cuda_installation.log maybe it is called different so look for a file with similar description at /tmp/.</li>
+                  <li>If it says the driver was not properly installed because of nouveau drivers, then don't worry. We will fix it anyways.</li>
+                  <li>The next step is to reboot your pc.</li>
+                  <li>In case your reboot is successful and you are at your desk, great! Skip the next steps.</li>
+                  <li>However, almost always there will be something wrong after rebooting so pay attention to the following steps.</li>
+                  <li>If the screen is freezed or you cannot log in or something else happened, then press <span class="general-purpose-command">ctrl+alt+F1</span> to enter text mode and log in. Most likely your drivers are not compatible, so we are going to install the ones that work with the GTX 1080 ti.</li>
+                  <li>Remove every nvidia-driver again with <span class="general-purpose-command">apt-get purge nvidia-*</span></li>
+                  <li>Then use the following command to install the 387 drivers. <span class="general-purpose-command">apt-get install nvidia-387</span> This will take a while so be patient.</li>
+                  <li>Once the drivers are installed, reboot the computer.</li>
+                  <li>Here is where most people freak out, it might seem it did not work but it did. If your screen is still freezed after rebooting, then enter text mode, log in and type <span class="general-purpose-command">service lightdm start</span>.</li>
+                  <li>Now everything should have gone smoothly and you should be able to see your desktop. If not you can send me a message.</li>
+                  <li>If you reboot your computer, then your screen might be freezed again. Don't worry the lightdm service is still dead so use the previous step to recover it.</li>
+                  <li>One last step, type <span class="general-purpose-command">nvidia-smi</span> to check CUDA is working. You should see a table showing the processes, memory used, etc by the GPU.</li>
+                </ul>
+                <h3>Cudnn</h3>
+                <p>At this point you should have CUDA 9.0, now we are going to install Cudnn. This library will allow us to work with tensorflow and the gpu. The following steps are easy and I don't see a reason why they would not work unless you really screwed up or have no idea what you are doing, haha sorry it is funny to me. </p>
+                <ul>
+                  <li>Download Cudnn 7.0 for Cuda 9.0</li>
+                  <li>Extract Cudnn because it is a tar file. You can use <span class="general-purpose-command">tar -xvf your-cudnn-file.tar</span></li>
+                  <li>There will be a folder named cuda at the path you extracted cudnn so don't change path.</li>
+                  <li>Then, let's copy the cudnn C++ libraries <span class="general-purpose-command">sudo cp cuda/include cudnn.h /usr/local/cuda/include</span></li>
+                  <li>Copy the rest of the necessary files <span class="general-purpose-command">sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64</span></li>
+                  <li>Give permissions to the files you just copied <span class="general-purpose-command">sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*</span></li>
+                  <li>That's it!</li>
+                </ul>
+              </p>
+              <p>So, everything should have gone smoothly. You have Cuda 9.0 and Cudnn 7.0 installed. The next step is tensorflow.</p>
+              <h2>Tensorflow</h2>
+              <p>This step really depends on the framework that you use for deep learning. Maybe you prefer caffe 2 rather than tensorflow or would like to use paddle or I don't know. I use Tensorflow because I was taught it, it has a lot of documentation, it is compatible with google cloud and its logo is cooler than others (for real). So that is why I choose to use Tensorflow. In case you need it I will show you how to setup tensorflow-gpu.
+                <ul>
+                  <li>Type install tensorflow gpu on a browser, enter the Tensorflow's page and choose linux.</li>
+                  <li>Then I recommend you creating a new environment for tensorflow. For this you can use <span class="general-purpose-command">conda create --name tensorflow python=3.6</span></li>
+                  <li>Then activate the environment using <span class="general-purpose-command">source activate tensorflow</span></li>
+                  <li>Go to the webpage you opened and look for the tf binaries for gpu. Choose the version of the python you are using. Copy the line that refers to the tf binary.</li>
+                  <li>Use the command <span class="general-purpose-command"> pip install --upgrade the-link-of-the-tf-binary</span></li>
+                  <li>The installation should not have any problem. Note that you are installing tensorflow-gpu==1.6. At least at the time of writing this post.</li>
+                  <li>Note that tensorflow-gpu==1.6 works with Cuda 9.0 or lower, Cudnn 7.0 or lower and python 3.6.</li>
+                  <li>To test tensorflow is working use the following command <span class="general-purpose-command">python -c "import tensorflow as tf"</span> if no errors show up, then everything is fine.</li>
+                </ul>
+              </p>
+              <h2>Conclusion</h2>
+              <p>The hardware and software I use are described in this post. Note that other tools are also necessary but they depend on the problem you are trying to solve and the technologies you like. E.g: google cloud, django, express, pandas library, etc, etc, etc. I hope this post was entertaining or has helped you setting up your own AI workstation. Feel free to send me a message if something is wrong or you would like to comment on.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/clean-blog.min.js"></script>
+
+  </body>
+
+</html>
