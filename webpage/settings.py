@@ -25,7 +25,7 @@ SECRET_KEY = "w9ko(+=oio-_v-*-8-+-a-r4gl56^+5&*xnqh_n0ruf=3*pgdl"
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["rodrigoloza-webpage.com"]
+ALLOWED_HOSTS = ["rodrigoloza-webpage.com", "127.0.0.1"]
 
 # Application definition
 

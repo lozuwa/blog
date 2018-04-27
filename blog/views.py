@@ -15,7 +15,6 @@ def about(request):
 
 # Posts
 def workstation(request):
-	print("here!")
 	return render(request, "blog/create_your_own_deep_learning_workstation.html")
 
 def database_scratch(request):
